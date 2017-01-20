@@ -1,0 +1,10 @@
+{
+	"source": {
+		"include": ["example.js"]
+	},
+	"plugins":["./index.js"],
+	"opts": {
+		"destination": "doc",
+		"private": true
+	}
+}
