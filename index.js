@@ -1,8 +1,6 @@
 'use strict';
 
-var conf = require('jsdoc/env').conf;
-var fs = require('fs');
-
+var Diagram = require('inheritance-diagram');
 // Map of nodes
 var map;
 
@@ -10,7 +8,9 @@ function addClass(doclet) {
 	var name = doclet.name;
 	var node = {
 		children: [],
-		link: `images/${name}.svg`
+		link: `${name}.html`,
+		// Reference to doclet is needed here to modify his description with a diagram
+		doclet: doclet
 	};
 
 	// If class does not extends any other class, then 'augments' property does not exist
@@ -27,7 +27,7 @@ function addClass(doclet) {
 
 	// If class does not mxies anything, then 'mixes' property does not exist
 	if (doclet.mixes && doclet.mixes.length > 0) {
-		node.mixes = doclet.mixes;
+		node.mixes = [].concat(doclet.mixes);
 	}
 
 	map[name] = node;
@@ -35,22 +35,9 @@ function addClass(doclet) {
 	return node;
 }
 
-
 exports.handlers = {
 	parseBegin: function() {
 		map = {};
-
-		// Create temp directory where all diagrams will be saved
-		fs.mkdir('tmp', function(e) {
-			if (e) {
-				throw e;
-			}
-		});
-		fs.mkdir('tmp/images', function(e) {
-			if (e) {
-				throw e;
-			}
-		});
 	},
 
 	newDoclet: function(event) {
@@ -59,40 +46,16 @@ exports.handlers = {
 			return;
 		}
 
-		var node = addClass(doclet);
-
-		// Add an image at the beginninng of the description
-		doclet.description = `<div><img src="${node.link}" alt="Inheritance diagram for ${doclet.name} class" /></div>` + doclet.description;
+		addClass(doclet);
 	},
 
 	parseComplete: function() {
-		// todo Generate inheritance diagrams
+		Object.keys(map).forEach((name) => {
+			// Generate inheritance diagrams
+			var diagram = new Diagram(name, map);
 
-		// todo Save images into the images forlder
-
-		// Add static resources to the config to include the generated images into the documentation
-		if (!conf.templates) {
-			conf.templates = {};
-		}
-		if (!conf.templates.default) {
-			conf.templates.default = {};
-		}
-		if (!conf.templates.default.staticFiles) {
-			conf.templates.default.staticFiles = {};
-		}
-		if (!conf.templates.default.staticFiles.include) {
-			conf.templates.default.staticFiles.include = [];
-		}
-		conf.templates.default.staticFiles.include.push('./tmp');
-	},
-
-	processingComplete: function() {
-		/*
-		fs.rmdir('tmp', function(e) {
-			if (e) {
-				throw e;
-			}
+			var doclet = map[name].doclet;
+			doclet.description = '<div class="class-diagram">' + diagram.getResult() + '</div>' + doclet.description;
 		});
-		*/
 	}
 };
