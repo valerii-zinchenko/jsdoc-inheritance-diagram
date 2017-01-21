@@ -1,8 +1,8 @@
 {
 	"source": {
-		"include": ["example.js"]
+		"include": ["example/example.js"]
 	},
-	"plugins":["./index.js"],
+	"plugins":["../index.js"],
 	"opts": {
 		"destination": "doc",
 		"private": true
