@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2017  Valerii Zinchenko
+ * Licensed under MIT (https://github.com/valerii-zinchenko/jsdoc-inheritance-diagram/blob/master/LICENSE.txt)
+ * All source files are available at: https://github.com/valerii-zinchenko/jsdoc-inheritance-diagram
+ */
 'use strict';
 
 var Diagram = require('inheritance-diagram');
