@@ -5,6 +5,16 @@
 	"plugins":["../index.js"],
 	"opts": {
 		"destination": "doc",
-		"private": true
+		"private": true,
+		"inheritance-diagram": {
+			"css": ".parent rect {fill: lightgray;}",
+			"rendering": {
+				"node": {
+					"dimensions": {
+						"width": 40
+					}
+				}
+			}
+		}
 	}
 }

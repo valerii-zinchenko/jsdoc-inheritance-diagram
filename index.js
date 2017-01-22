@@ -5,6 +5,7 @@
  */
 'use strict';
 
+var conf = require('jsdoc/env').conf.opts['inheritance-diagram'];
 var Diagram = require('inheritance-diagram');
 // Map of nodes
 var map;
@@ -57,7 +58,7 @@ exports.handlers = {
 	parseComplete: function() {
 		Object.keys(map).forEach((name) => {
 			// Generate inheritance diagrams
-			var diagram = new Diagram(name, map);
+			var diagram = new Diagram(name, map, conf.css, conf);
 
 			var doclet = map[name].doclet;
 			doclet.description = '<div class="class-diagram">' + diagram.getResult() + '</div>' + doclet.description;
