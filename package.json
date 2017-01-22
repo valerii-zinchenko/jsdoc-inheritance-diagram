@@ -1,6 +1,6 @@
 {
   "name": "jsdoc-inheritance-diagram",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "JSDoc plugin to include the inheritance diagram into the docuemntation",
   "main": "index.js",
   "directories": {
