@@ -5,7 +5,7 @@
  */
 'use strict';
 
-var conf = require('jsdoc/env').conf.opts['inheritance-diagram'];
+var conf = require('jsdoc/env').conf.opts['inheritance-diagram'] || {};
 var Diagram = require('inheritance-diagram');
 // Map of nodes
 var map;
