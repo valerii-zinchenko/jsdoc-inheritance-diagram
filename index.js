@@ -23,12 +23,6 @@ function addClass(doclet) {
 	if (doclet.augments && doclet.augments.length > 0) {
 		// inheritance-diagram@1.0 supports only single parent
 		node.parent = doclet.augments[0];
-
-		// Add children
-		let parentNode = map[node.parent];
-		if (parentNode.children.indexOf(name) === -1) {
-			parentNode.children.push(name);
-		}
 	}
 
 	// If class does not mxies anything, then 'mixes' property does not exist
@@ -56,6 +50,18 @@ exports.handlers = {
 	},
 
 	parseComplete: function() {
+		// Populate children
+		Object.keys(map).forEach((name) => {
+			var node = map[name];
+			var parentNode = map[node.parent] || {
+				children: []
+			};
+
+			if (parentNode.children.indexOf(name) === -1) {
+				parentNode.children.push(name);
+			}
+		});
+
 		Object.keys(map).forEach((name) => {
 			// Generate inheritance diagrams
 			var diagram = new Diagram(name, map, conf.css, conf);
