@@ -7,8 +7,8 @@ Thanks to [SVG](https://www.w3.org/Graphics/SVG/) this diagram is interactive. I
 
 ## Install
 
-1. `npm install jsdoc-inheritance-diagram --save`
-1. Add `jsdoc-inheritance-diagram` to the `plugins`
+1. `npm install jsdoc-inheritance-diagram --save-dev`
+1. Add `"node_modules/jsdoc-inheritance-diagram"` to the `plugins` in JSDoc config file
 1. (opt.) Add customization configuration
 
 Please be aware about the limitations of [`inheritance-diagram`](https://github.com/valerii-zinchenko/inheritance-diagram#limitations). Because of them some configuration are needed to make the output nice (see below).
@@ -28,7 +28,7 @@ Snippet example of enabling and configuring of this plugin:
 
 ```js
 {
-	"plugins":["jsdoc-inheritance-diagram"],
+	"plugins":["node_modules/jsdoc-inheritance-diagram"],
 	"opts": {
 		"inheritance-diagram": {
 			"css": ".parent rect {fill: lightgray;}",
