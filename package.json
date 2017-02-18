@@ -7,7 +7,7 @@
     "example": "example"
   },
   "dependencies": {
-    "inheritance-diagram": "^1.0.1"
+    "inheritance-diagram": "^2.0.0"
   },
   "devDependencies": {},
   "scripts": {

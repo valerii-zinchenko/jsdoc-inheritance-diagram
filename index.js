@@ -64,7 +64,7 @@ exports.handlers = {
 
 		Object.keys(map).forEach((name) => {
 			// Generate inheritance diagrams
-			var diagram = new Diagram(name, map, conf.css, conf);
+			var diagram = new Diagram(name, map, conf);
 
 			var doclet = map[name].doclet;
 			doclet.description = '<div class="class-diagram">' + diagram.getResult() + '</div>' + doclet.description;
