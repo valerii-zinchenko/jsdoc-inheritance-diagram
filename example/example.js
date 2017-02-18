@@ -50,9 +50,9 @@ function ChildL12() {}
  * ChildL21
  * @class
  * @augments ChildL11
- * @augments ChildL12
  * @mixes Mixin1
  * @mixes Mixin2
+ * @mixes ExtMixin
  */
 function ChildL21(){}
 /**

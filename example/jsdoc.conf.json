@@ -7,12 +7,13 @@
 		"destination": "doc",
 		"private": true,
 		"inheritance-diagram": {
+			"externalLinks": {
+				"ExtMixin": "https://github.com/valerii-zinchenko/inheritance-diagram"
+			},
 			"css": ".parent rect {fill: lightgray;}",
-			"rendering": {
-				"node": {
-					"dimensions": {
-						"width": 40
-					}
+			"node": {
+				"dimensions": {
+					"width": 80
 				}
 			}
 		}
