@@ -16,11 +16,14 @@ Please be aware about the limitations of [`inheritance-diagram`](https://github.
 
 ## Configuration
 
-`css` - (optional) specify the styles for the diagram. Alternatively, you can create your own CSS-file and include it into the configuration of static resources. For more details visit [JSDoc documentation](http://usejsdoc.org/about-configuring-default-template.html#copying-static-files-to-the-output-directory)
+`css` - (optional) string of the styles for the diagram. Initiall styles can be found in the [API doc to `inheritance-diagram`](https://valerii-zinchenko.github.io/inheritance-diagram/doc/nightly/OutputAdapter.html#_css). Alternatively, you can create your own CSS-file and include it into the configuration of static resources. For more details visit [JSDoc documentation](http://usejsdoc.org/about-configuring-default-template.html#copying-static-files-to-the-output-directory)
 
-`rendering` - (optional) object of configurations that can be tuned to change some physic properties of a diagram, like the width or height of a node.
+`node` and `line` - (optional) object of configurations that can be tuned to change some physic properties of a diagram, like the width or height of a node. The full list of available properties, which can be tuned can be found in the [API doc to `inheritance-diagram`](https://valerii-zinchenko.github.io/inheritance-diagram/doc/nightly/Rendering.html#properties)
 
-For more information, please visit [`inheritance-diagram`](https://github.com/valerii-zinchenko/inheritance-diagram).
+`externalLinks` - (optional) defines the links to the external documentation for the classes. More information can be found in the [API doc to `inheritance-diagram`](https://valerii-zinchenko.github.io/inheritance-diagram/doc/nightly/InputAdapter.html#properties)
+
+Because this plugin is just a wrapper over [`inheritance-diagram`](https://github.com/valerii-zinchenko/inheritance-diagram) module, this means that the configuration for this plugin is the same. So you can visit that module to find more details.
+
 
 ## Usage example
 
@@ -31,12 +34,13 @@ Snippet example of enabling and configuring of this plugin:
 	"plugins":["node_modules/jsdoc-inheritance-diagram"],
 	"opts": {
 		"inheritance-diagram": {
+			"externalLinks": {
+				"ExtClass": "http://link.to/external/class/documentation.html"
+			},
 			"css": ".parent rect {fill: lightgray;}",
-			"rendering": {
-				"node": {
-					"dimensions": {
-						"width": 40
-					}
+			"node": {
+				"dimensions": {
+					"width": 40
 				}
 			}
 		}
