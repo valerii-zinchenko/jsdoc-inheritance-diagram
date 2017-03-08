@@ -1,4 +1,12 @@
 /**
+ * ChildL31
+ *
+ * @class
+ * @augments ChildL21
+ */
+function ChildL31() {}
+
+/**
  * Root
  * @class
  */
@@ -20,7 +28,7 @@ Root.prototype.method = function(){};
  *
  * @type {Number}
  */
-Root.statisV = 5;
+Root.staticV = 5;
 
 /**
  * ChildL11
