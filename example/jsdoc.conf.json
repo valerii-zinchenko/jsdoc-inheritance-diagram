@@ -1,6 +1,6 @@
 {
 	"source": {
-		"include": ["example/example.js"]
+		"include": ["example"]
 	},
 	"plugins":["../index.js"],
 	"opts": {
@@ -8,6 +8,7 @@
 		"private": true,
 		"inheritance-diagram": {
 			"externalLinks": {
+				"SuperRoot": "https://super/root/url",
 				"ExtMixin": "https://github.com/valerii-zinchenko/inheritance-diagram"
 			},
 			"css": ".parent rect {fill: lightgray;}",
