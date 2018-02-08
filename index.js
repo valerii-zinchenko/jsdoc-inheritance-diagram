@@ -1,18 +1,18 @@
 /*
- * Copyright (c) 2017  Valerii Zinchenko
+ * Copyright (c) 2017-2018  Valerii Zinchenko
  * Licensed under MIT (https://github.com/valerii-zinchenko/jsdoc-inheritance-diagram/blob/master/LICENSE.txt)
  * All source files are available at: https://github.com/valerii-zinchenko/jsdoc-inheritance-diagram
  */
 'use strict';
 
-var conf = require('jsdoc/env').conf.opts['inheritance-diagram'] || {};
-var Diagram = require('inheritance-diagram');
+const conf = require('jsdoc/env').conf.opts['inheritance-diagram'] || {};
+const Diagram = require('inheritance-diagram');
 // Map of nodes
-var map;
+let map;
 
 function addClass(doclet) {
-	var name = doclet.name;
-	var node = {
+	const name = doclet.name;
+	const node = {
 		children: [],
 		link: `${name}.html`,
 		// Reference to doclet is needed here to modify his description with a diagram
@@ -35,13 +35,34 @@ function addClass(doclet) {
 	return node;
 }
 
+let isDocForExternalLinksGenerated = false;
 exports.handlers = {
+	beforeParse: function(e) {
+		// this event is fired for each file but additional documentation should be added only once
+		if (isDocForExternalLinksGenerated) {
+			return;
+		}
+
+		let extraDoc = '';
+		Object.keys(conf.externalLinks).forEach(key => {
+			extraDoc += `/**
+			 * This is automatically generated documentation page by <a href="https://www.npmjs.com/package/jsdoc-inheritance-diagram" target="_blank"><code>jsdoc-inheritance-diagram</code></a> plugin. Please follow "see" link to see more details about this class.
+			 * @class ${key}
+			 * @see ${conf.externalLinks[key]}
+			 */`;
+		});
+
+		e.source += extraDoc;
+
+		isDocForExternalLinksGenerated = true;
+	},
+
 	parseBegin: function() {
 		map = {};
 	},
 
 	newDoclet: function(event) {
-		var doclet = event.doclet;
+		const doclet = event.doclet;
 		if (doclet.kind !== 'class') {
 			return;
 		}
@@ -52,8 +73,8 @@ exports.handlers = {
 	parseComplete: function() {
 		// Populate children
 		Object.keys(map).forEach((name) => {
-			var node = map[name];
-			var parentNode = map[node.parent] || {
+			const node = map[name];
+			const parentNode = map[node.parent] || {
 				children: []
 			};
 
@@ -64,9 +85,9 @@ exports.handlers = {
 
 		Object.keys(map).forEach((name) => {
 			// Generate inheritance diagrams
-			var diagram = new Diagram(name, map, conf);
+			const diagram = new Diagram(name, map, conf);
 
-			var doclet = map[name].doclet;
+			const doclet = map[name].doclet;
 			doclet.description = '<div class="class-diagram">' + diagram.getResult() + '</div>' + doclet.description;
 		});
 	}
