@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: example.js</title>
+    <title>JSDoc: Source: example2.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: example.js</h1>
+    <h1 class="page-title">Source: example2.js</h1>
 
     
 
@@ -27,37 +27,71 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * ChildL31
- *
+ * ChildL11
  * @class
- * @augments ChildL21
+ * @augments Root
  */
-function ChildL31() {}
-
+function ChildL11() {}
 /**
- * Root
- * @class
- * @augments SuperRoot
- */
-function Root() {}
-/**
- * property
- *
- * @type {Number}
- */
-Root.prototype.prop = 8;
-/**
- * Method
+ * Overriden metod
  *
  * @param {String} str - String
  */
-Root.prototype.method = function(){};
+ChildL11.prototype.method = function(){};
 /**
- * Static property
- *
- * @type {Number}
+ * Method 2
  */
-Root.staticV = 5;
+ChildL11.prototype.method2 = function(){};
+
+/**
+ * ChildL12
+ * @class
+ * @augments Root
+ */
+function ChildL12() {}
+
+/**
+ * ChildL21
+ * @class
+ * @augments ChildL11
+ * @mixes Mixin1
+ * @mixes Mixin2
+ * @mixes ExtMixin
+ */
+function ChildL21(){}
+/**
+ * Method 3
+ */
+ChildL21.prototype.method3 = function(){};
+/**
+ * Property 3
+ *
+ * @type {String}
+ */
+ChildL21.prototype.prop3 = 'str';
+
+/**
+ * Mixin class
+ * @class
+ */
+function Mixin1(){}
+/**
+ * mixin method 1
+ */
+Mixin1.prototype.mixin1method = function(){};
+/**
+ * property of mixin 1
+ */
+Mixin1.prototype.mixin1prop = 'str';
+/**
+ * Mixin2
+ * @class
+ */
+function Mixin2(){}
+/**
+ * mixin method 2
+ */
+Mixin2.prototype.mixin2method = function(){};
 </code></pre>
         </article>
     </section>
