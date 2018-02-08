@@ -21,7 +21,7 @@ Please be aware about the limitations of [`inheritance-diagram`](https://github.
 
 `node` and `line` - (optional) object of configurations that can be tuned to change some physic properties of a diagram, like the width or height of a node. The full list of available properties, which can be tuned can be found in the [API doc to `inheritance-diagram`](https://valerii-zinchenko.github.io/inheritance-diagram/doc/nightly/Rendering.html#properties)
 
-`externalLinks` - (optional) defines the links to the external documentation for the classes. More information can be found in the [API doc to `inheritance-diagram`](https://valerii-zinchenko.github.io/inheritance-diagram/doc/nightly/InputAdapter.html#properties)
+`externalLinks` - (optional) defines the links to the external documentation of the classes. For that classes new documentations will be automatically generated inside the project to show the inheritance diagram for them.
 
 Because this plugin is just a wrapper over [`inheritance-diagram`](https://github.com/valerii-zinchenko/inheritance-diagram) module, this means that the configuration for this plugin is the same. So you can visit that module to find more details.
 
@@ -36,12 +36,13 @@ Example of enabling and configuration:
 	"opts": {
 		"inheritance-diagram": {
 			"externalLinks": {
+				"SuperRoot": "https://super/root/url",
 				"ExtClass": "http://link.to/external/class/documentation.html"
 			},
 			"css": ".parent rect {fill: lightgray;}",
 			"node": {
 				"dimensions": {
-					"width": 40
+					"width": 80
 				}
 			}
 		}
