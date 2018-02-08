@@ -35,7 +35,7 @@ function addClass(doclet) {
 	return node;
 }
 
-let isDocForExternalLinksGenerated = false;
+let isDocForExternalLinksGenerated = !conf.externalLinks;
 exports.handlers = {
 	beforeParse: function(e) {
 		// this event is fired for each file but additional documentation should be added only once
