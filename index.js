@@ -11,7 +11,7 @@ const Diagram = require('inheritance-diagram');
 let map;
 
 function addClass(doclet) {
-	const name = doclet.name;
+	const name = doclet.longname;
 	const node = {
 		children: [],
 		link: `${name}.html`,
