@@ -88,7 +88,7 @@ exports.handlers = {
 			const diagram = new Diagram(name, map, conf);
 
 			const doclet = map[name].doclet;
-			doclet.description = '<div class="class-diagram">' + diagram.getResult() + '</div>' + doclet.description;
+			doclet.description = `<div class="class-diagram">${diagram.getResult()}</div>${doclet.description || ''}`;
 		});
 	}
 };
